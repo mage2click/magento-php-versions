@@ -62,6 +62,10 @@ RUN     apt-get -y install golang-go \
            && export GOPATH=/opt/go \
            && go get github.com/mailhog/mhsendmail
 
+RUN     apt-get install -y librabbitmq-dev \
+            && pecl install amqp \
+            && docker-php-ext-enable amqp
+
 RUN     printf '* *\t* * *\tapp\t%s/usr/local/bin/php /var/www/html/update/cron.php\n' >> /etc/crontab
 RUN     printf '* *\t* * *\tapp\t%s/usr/local/bin/php /var/www/html/bin/magento cron:run\n' >> /etc/crontab
 RUN     printf '* *\t* * *\tapp\t%s/usr/local/bin/php /var/www/html/bin/magento setup:cron:run\n#\n' >> /etc/crontab
