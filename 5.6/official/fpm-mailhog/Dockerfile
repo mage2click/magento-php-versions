@@ -46,8 +46,7 @@ RUN docker-php-ext-install \
 
 # Install xdebug
 RUN pecl install xdebug-2.5.5 \
-    && docker-php-ext-enable xdebug \
-    && sed -i -e 's/^zend_extension/\;zend_extension/g' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    && docker-php-ext-enable xdebug
 
 # Install php redis ext
 RUN pecl install redis-4.2.0 \
@@ -85,5 +84,3 @@ USER    app:app
 VOLUME  /var/www
 
 WORKDIR /var/www/html
-
-EXPOSE  9001
