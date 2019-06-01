@@ -80,4 +80,3 @@ VOLUME  /var/www
 
 WORKDIR /var/www/html
 
-EXPOSE  9001
