@@ -44,7 +44,8 @@ RUN     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS && \
                      redis-${PHPREDIS_VERSION} \
                      amqp-${AMQP_VERSION} \
                      ssh2-${SSH2_VERSION} && \
-        docker-php-ext-enable xdebug redis amqp ssh2
+        docker-php-ext-enable xdebug redis amqp ssh2 && \
+        sed -i -e 's/^zend_extension/\;zend_extension/g' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN     apk del .build-deps
 
