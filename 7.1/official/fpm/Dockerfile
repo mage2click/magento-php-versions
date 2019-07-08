@@ -12,6 +12,7 @@ RUN     apt-get update && apt-get install -y \
             libmcrypt-dev \
             libpng-dev \
             libxslt1-dev \
+            libsodium-dev \
             lsof \
             mysql-client \
             vim \
@@ -31,10 +32,11 @@ RUN     docker-php-ext-install \
             pcntl \
             sockets \
             pdo_mysql \
+            sodium \
             soap \
             xsl \
             zip
-  
+
 RUN     pecl channel-update pecl.php.net \
             && pecl install xdebug \
             && docker-php-ext-enable xdebug \
