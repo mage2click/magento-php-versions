@@ -14,7 +14,7 @@ RUN     apt-get update && apt-get install -y \
             libxslt1-dev \
             libsodium-dev \
             lsof \
-            mysql-client \
+            mariadb-client \
             vim \
             zip
 
