@@ -13,7 +13,7 @@ RUN     apt-get update && apt-get install -y \
             libpng-dev \
             libxslt1-dev \
             lsof \
-            mysql-client \
+            mariadb-client \
             vim \
             zip
 
@@ -30,11 +30,15 @@ RUN     docker-php-ext-install \
             soap \
             xsl \
             zip
-  
+
 RUN     pecl channel-update pecl.php.net \
             && pecl install xdebug \
             && docker-php-ext-enable xdebug \
             && sed -i -e 's/^zend_extension/\;zend_extension/g' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+RUN     apt-get install -y libsodium-dev \
+            && pecl install libsodium \
+            && docker-php-ext-enable sodium
 
 RUN     apt-get install -y libssh2-1-dev \
             && pecl install ssh2-1.1.2 \
